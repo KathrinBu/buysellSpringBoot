@@ -27,21 +27,21 @@ public class ProductService {
     public void saveProduct(Principal principal, Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
        product.setUser(getUserByPrincipale(principal));
         Image image1;
-        Image image2;
-        Image image3;
+//        Image image2;
+//        Image image3;
         if (file1.getSize() !=0) {
             image1=toImageEntity(file1);
             image1.setPreviewImage(true);
             product.addImageToProduct(image1);
         }
-        if (file2.getSize() !=0) {
-            image2=toImageEntity(file2);
-            product.addImageToProduct(image2);
-        }
-        if (file3.getSize() !=0) {
-            image3=toImageEntity(file3);
-            product.addImageToProduct(image3);
-        }
+//        if (file2.getSize() !=0) {
+//            image2=toImageEntity(file2);
+//            product.addImageToProduct(image2);
+//        }
+//        if (file3.getSize() !=0) {
+//            image3=toImageEntity(file3);
+//            product.addImageToProduct(image3);
+//        }
         log.info("Saving new Product. Title: {}; Author email: {}", product.getTitle(), product.getUser().getEmail());
         Product productFromDb=productRepository.save(product);
         productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
